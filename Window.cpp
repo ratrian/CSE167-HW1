@@ -22,9 +22,7 @@ glm::vec3 Window::upVector(0, 1, 0);		// The up direction of the camera.
 glm::mat4 Window::view = glm::lookAt(Window::eyePos, Window::lookAtPoint, Window::upVector);
 
 // Shader Program ID
-GLuint Window::shaderProgram; 
-
-
+GLuint Window::shaderProgram;
 
 bool Window::initializeProgram() {
 	// Create a shader program with a vertex shader and a fragment shader.
