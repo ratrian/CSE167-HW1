@@ -17,7 +17,6 @@ public:
 	static const char* windowTitle;
 
 	// Objects to Render
-	static Cube* cube;
 	static PointCloud* bunnyPoints;
 	static PointCloud* sandalPoints;
 	static PointCloud* bearPoints;

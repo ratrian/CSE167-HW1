@@ -118,6 +118,7 @@ void PointCloud::updatePointSize(GLfloat size)
 	/*
 	 * TODO: Section 3: Implement this function to adjust the point size.
 	 */
+	pointSize = size;
 }
 
 void PointCloud::spin(float deg)

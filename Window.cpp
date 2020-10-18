@@ -7,11 +7,12 @@ int Window::height;
 const char* Window::windowTitle = "GLFW Starter Project";
 
 // Objects to Render
-Cube* Window::cube;
 PointCloud* Window::bunnyPoints;
 PointCloud* Window::sandalPoints;
 PointCloud* Window::bearPoints;
-Object* currObj;
+PointCloud* currPointCloud;
+
+GLfloat pointSize;
 
 // Camera Matrices 
 // Projection matrix:
@@ -42,16 +43,15 @@ bool Window::initializeProgram() {
 
 bool Window::initializeObjects()
 {
-	// Create a cube of size 5.
-	cube = new Cube(5.0f);
+	pointSize = 20;
 
-	// Create a point cloud consisting of object vertices.
-	bunnyPoints = new PointCloud("bunny.obj", 100);
-	sandalPoints = new PointCloud("sandal.obj", 100);
-	bearPoints = new PointCloud("bear.obj", 100);
+	// Create point clouds consisting of objects vertices.
+	bunnyPoints = new PointCloud("bunny.obj", pointSize);
+	sandalPoints = new PointCloud("sandal.obj", pointSize);
+	bearPoints = new PointCloud("bear.obj", pointSize);
 
-	// Set cube to be the first to display
-	currObj = cube;
+	// Set bunny to be the first to display
+	currPointCloud = bunnyPoints;
 
 	return true;
 }
@@ -59,7 +59,6 @@ bool Window::initializeObjects()
 void Window::cleanUp()
 {
 	// Deallcoate the objects.
-	delete cube;
 	delete bunnyPoints;
 	delete sandalPoints;
 	delete bearPoints;
@@ -145,7 +144,7 @@ void Window::resizeCallback(GLFWwindow* window, int width, int height)
 void Window::idleCallback()
 {
 	// Perform any necessary updates here 
-	currObj->update();
+	currPointCloud->update();
 }
 
 void Window::displayCallback(GLFWwindow* window)
@@ -154,7 +153,7 @@ void Window::displayCallback(GLFWwindow* window)
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);	
 
 	// Render the objects
-	currObj->draw(view, projection, shaderProgram);
+	currPointCloud->draw(view, projection, shaderProgram);
 
 	// Gets events, including input such as keyboard and mouse or window resizing
 	glfwPollEvents();
@@ -181,13 +180,21 @@ void Window::keyCallback(GLFWwindow* window, int key, int scancode, int action, 
 
 		// switch between the cube and the cube pointCloud
 		case GLFW_KEY_F1:
-			currObj = bunnyPoints;
+			currPointCloud = bunnyPoints;
 			break;
 		case GLFW_KEY_F2:
-			currObj = sandalPoints;
+			currPointCloud = sandalPoints;
 			break;
 		case GLFW_KEY_F3:
-			currObj = bearPoints;
+			currPointCloud = bearPoints;
+			break;
+		case GLFW_KEY_S:
+			pointSize = pointSize / 2;
+			currPointCloud->updatePointSize(pointSize);
+			break;
+		case GLFW_KEY_L:
+			pointSize = pointSize * 2;
+			currPointCloud->updatePointSize(pointSize);
 			break;
 
 		default:
