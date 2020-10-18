@@ -3,8 +3,11 @@
 
 #include "Object.h"
 
-#include <vector>
 #include <string>
+#include <vector>
+#include <iostream>
+#include <fstream>
+#include <sstream>
 
 using namespace std;
 
