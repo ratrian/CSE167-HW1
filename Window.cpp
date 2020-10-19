@@ -43,7 +43,7 @@ bool Window::initializeProgram() {
 
 bool Window::initializeObjects()
 {
-	pointSize = 20;
+	pointSize = 15;
 
 	// Create point clouds consisting of objects vertices.
 	bunnyPoints = new PointCloud("bunny.obj", pointSize);
