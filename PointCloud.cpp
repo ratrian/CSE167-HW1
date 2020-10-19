@@ -49,6 +49,7 @@ PointCloud::PointCloud(std::string objFilename, GLfloat pointSize)
 	 * TODO: Section 4, you will need to normalize the object to fit in the
 	 * screen.
 	 */
+
 	GLfloat minX = points[0].x;
 	GLfloat maxX = points[0].x;
 	GLfloat minY = points[0].y;
@@ -86,15 +87,15 @@ PointCloud::PointCloud(std::string objFilename, GLfloat pointSize)
 	GLfloat maxDist = sqrt((points[0].x) * (points[0].x) + (points[0].y) * (points[0].y) + (points[0].z) * (points[0].z));
 
 	for (int i = 0; i < numPoints; i++) {
-		if (maxDist < sqrt((points[0].x) * (points[0].x) + (points[0].y) * (points[0].y) + (points[0].z) * (points[0].z)))
+		if (maxDist < sqrt((points[i].x) * (points[i].x) + (points[i].y) * (points[i].y) + (points[i].z) * (points[i].z)))
 			maxDist = sqrt((points[i].x) * (points[i].x) + (points[i].y) * (points[i].y) + (points[i].z) * (points[i].z));
 	}
 
-	/*for (int i = 0; i < numPoints; i++) {
-		points[i].x *= maxDist;
-		points[i].y *= maxDist;
-		points[i].z *= maxDist;
-	}*/
+	for (int i = 0; i < numPoints; i++) {
+		points[i].x *= 10 / maxDist;
+		points[i].y *= 10 / maxDist;
+		points[i].z *= 10 / maxDist;
+	}
 
 	// Set the model matrix to an identity matrix. 
 	model = glm::mat4(1);
