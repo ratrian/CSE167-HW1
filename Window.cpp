@@ -1,6 +1,5 @@
 #include "Window.h"
 
-
 // Window Properties
 int Window::width;
 int Window::height;

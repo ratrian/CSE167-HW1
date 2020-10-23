@@ -23,6 +23,8 @@ void setup_opengl_settings()
 	// Enable depth buffering.
 	glEnable(GL_DEPTH_TEST);
 
+	glEnable(GL_PROGRAM_POINT_SIZE);
+
 	// Related to shaders and z value comparisons for the depth buffer.
 	glDepthFunc(GL_LEQUAL);
 
