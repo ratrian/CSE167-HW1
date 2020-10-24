@@ -91,9 +91,9 @@ PointCloud::PointCloud(std::string objFilename, GLfloat pointSize)
 	}
 
 	for (int i = 0; i < numPoints; i++) {
-		points[i].x *= 10 / maxDist;
-		points[i].y *= 10 / maxDist;
-		points[i].z *= 10 / maxDist;
+		points[i].x *= 9.5 / maxDist;
+		points[i].y *= 9.5 / maxDist;
+		points[i].z *= 9.5 / maxDist;
 	}
 
 	// Set the model matrix to an identity matrix. 
